@@ -6,7 +6,7 @@ import useMascotas from '../hooks/useMascotas'
 import MascotasPreview from '../components/mascotasPreview';
 import {Link} from 'gatsby';
 import {css} from '@emotion/react';
-
+import firebase from '../firebase'
 
 const Titulo = styled.div`
   font-size: 1.5rem;
@@ -63,6 +63,15 @@ const Container = styled.div`
 
 
 const IndexPage = () => {
+  React.useEffect(()=>{
+      const msg = firebase.messaging();
+      msg.requestPermission().then(()=>{
+        return msg.getToken();
+      }).then((data)=>{
+        console.warn("token",data)
+      })
+  })
+
   const EnableNotifications = async () =>{
     let sw = await navigator.serviceWorker.ready;
     let result = await sw.pushManager.subscribe({
@@ -70,7 +79,7 @@ const IndexPage = () => {
       //añadir tu propia key de server
       //¿como generar tu propia key?
       //npx web-push generate-vapid-keys
-      applicationServerKey: 'AQUI_VA_SU_KEY'
+      applicationServerKey: 'BKO5Nd2TOE9qRBRfdNKrM40beX4kjpfzFaeHy5o8yGGHnZVIu1CzJH7rRLzeL1J0zT2UMGQe39V8jxyh85SNtws'
     })
     console.log(result)
   }

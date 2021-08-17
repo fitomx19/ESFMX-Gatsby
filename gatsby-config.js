@@ -45,6 +45,18 @@ module.exports = {
       },
       __key: "images",
     },
+    {
+      resolve: `gatsby-plugin-firebase-messaging`,
+      options: {
+        //required unless removeFirebaseServiceWorker == true
+        config: { 
+          apiKey: 'AIzaSyBmj_POBbsOadAulImwZgaNBsDxFOeJRUA',
+          appId: '1:960500878700:web:6742321412cd4fee6cf749',
+          messagingSenderId: '960500878700',
+          projectId: 'veterinaria-d8d23',
+        },
+      },
+    },
     
   ],
 };
